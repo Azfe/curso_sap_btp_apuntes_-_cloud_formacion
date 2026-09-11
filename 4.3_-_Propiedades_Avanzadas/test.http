@@ -1,0 +1,54 @@
+POST http://localhost:4004/odata/v4/catalog/Books
+Content-Type: application/json
+
+{
+    "ID": "1",
+    "author_ID": "1",
+    "postalCode": "12345",
+    "url": "https://example.com"
+}
+
+###
+
+POST http://localhost:4004/odata/v4/catalog/Book
+Content-Type: application/json
+
+{
+    "title" : "Domine JavaScript",
+    "price" : 29.99
+}
+
+###
+
+POST http://localhost:4004/odata/v4/catalog/Libros
+Content-Type: application/json
+
+{    
+    "InternalCode" : "12345",
+    "title" : "Domine Node.js",
+    "price" : 19.99,
+    "currency_code" : "EUR"
+}
+
+### 
+
+POST http://localhost:4004/odata/v4/catalog/Product
+Content-Type: application/json
+
+{    
+    "name" : "Soporte para libros",
+    "price" : "15.95",
+    "rating" : 5,    
+    "ref_code_number" : "RF12345678",
+    "bar_code" : "BAR456"
+}
+
+### 
+
+POST http://localhost:4004/odata/v4/catalog/Authors
+Content-Type: application/json
+
+{
+    "ID": "4c02ad40-4bac-4f87-9888-a45e0928783f",
+    "name": "Peter Doe"
+}
