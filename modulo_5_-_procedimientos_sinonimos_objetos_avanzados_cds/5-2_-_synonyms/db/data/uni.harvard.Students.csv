@@ -1,0 +1,4 @@
+ID,name,surname,age,email,finalGrade,signatures_ID
+stu-001,Ana,Garcia,21,ana.garcia@example.com,91,sig-001
+stu-002,Bruno,Lopez,22,bruno.lopez@example.com,87,sig-002
+stu-003,Carla,Martin,20,carla.martin@example.com,95,sig-003
