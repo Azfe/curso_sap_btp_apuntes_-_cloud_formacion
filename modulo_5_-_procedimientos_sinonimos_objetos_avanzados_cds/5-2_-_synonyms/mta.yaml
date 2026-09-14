@@ -26,6 +26,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: harvard-db
+      - name: harvard-auth
   - name: harvard-db-deployer
     type: hdb
     path: gen/db
@@ -41,3 +42,13 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: harvard-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        tenant-mode: dedicated
+        xsappname: harvard
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: harvard-auth
+      service-plan: application

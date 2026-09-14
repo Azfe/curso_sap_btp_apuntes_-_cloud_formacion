@@ -1,0 +1,9 @@
+{
+    "xsappname": "harvard",
+    "tenant-mode": "dedicated",
+    "description": "Fichero de Seguridad de Harvard University",
+    "scopes": [],
+    "role-templates": [],
+    "role-collections": [],
+    "attributes": []
+}
