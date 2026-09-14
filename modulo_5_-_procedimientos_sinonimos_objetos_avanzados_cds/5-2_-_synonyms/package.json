@@ -1,9 +1,11 @@
 {
-  "name": "5-2_-_synonyms",
+  "name": "harvard",
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@sap/cds": "^10"
+    "@sap/cds": "^10",
+    "@sap/xssec": "^4",
+    "@cap-js/hana": "^3"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3",
@@ -12,5 +14,13 @@
   "scripts": {
     "start": "cds-serve"
   },
-  "private": true
+  "private": true,
+  "cds": {
+    "requires": {
+      "db": "sql",
+      "auth": {
+        "kind": "dummy"
+      }
+    }
+  }
 }
