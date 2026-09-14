@@ -4,22 +4,21 @@ using { cuid, managed } from '@sap/cds/common';
 
 type Email : String(100);
 
-entity Course {
+entity Course: cuid {
     name: String(20);
     start_date: Date;
-    signatures: Association to Signatures;
+    signatures: Association to Subjects;
     students: Association to Students;
 }
 
-entity Signatures : cuid, managed {
-    title: String(20);
-    grade: Integer;
-    students : Association to Students;
+entity Subjects : cuid, managed {
+    title: String(20); 
+    course : Association to Course;
 } 
 
-entity Grade_Signature : cuid, managed {
-    grade: Integer;
-    signature : Association to one Signatures;
+entity Grade_Subject : cuid, managed {
+    grade: Integer; // una nota por asignatura
+    signature : Association to one Subjects;
     student : Association to one Students;
 }
 
@@ -28,7 +27,6 @@ entity Students: cuid {
     surname: String(50);
     age: Integer;
     email : Email;
-    finalGrade: Integer;
-    signatures : Composition of Grade_Signature;
+    grades : Composition of many Grade_Subject on grades.student = $self;
+    finalGrade : Integer @readonly;  // calculado, no introducido a mano    
 }
-

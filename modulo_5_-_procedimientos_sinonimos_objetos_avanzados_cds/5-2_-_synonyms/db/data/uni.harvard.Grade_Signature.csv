@@ -1,4 +1,0 @@
-ID,createdAt,createdBy,modifiedAt,modifiedBy,grade,student_ID,signature_ID
-gs-001,2026-09-01T09:00:00Z,seed,2026-09-01T09:00:00Z,seed,91,stu-001,sig-001
-gs-002,2026-09-01T09:05:00Z,seed,2026-09-01T09:05:00Z,seed,87,stu-002,sig-002
-gs-003,2026-09-01T09:10:00Z,seed,2026-09-01T09:10:00Z,seed,95,stu-003,sig-003
