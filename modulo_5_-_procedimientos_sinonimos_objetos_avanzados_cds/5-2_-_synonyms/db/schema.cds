@@ -12,7 +12,7 @@ entity Course: cuid {
 }
 
 entity Subjects : cuid, managed {
-    title: String(20); 
+    title: String(50);
     course : Association to Course;
 } 
 
