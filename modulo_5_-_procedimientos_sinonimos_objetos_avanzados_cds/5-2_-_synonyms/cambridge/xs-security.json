@@ -1,0 +1,9 @@
+{
+    "xsappname": "cambridge",
+    "tenant-mode": "dedicated",
+    "description": "Fichero de Seguridad de Cambridge University",
+    "scopes": [],
+    "role-templates": [],
+    "role-collections": [],
+    "attributes": []
+}
