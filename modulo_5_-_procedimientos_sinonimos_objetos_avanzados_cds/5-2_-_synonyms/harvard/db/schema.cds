@@ -5,7 +5,7 @@ using { cuid, managed } from '@sap/cds/common';
 type Email : String(100);
 
 entity Course: cuid {
-    name: String(20);
+    name: String(50);
     start_date: Date;
     signatures: Association to Subjects;
     students: Association to Students;
