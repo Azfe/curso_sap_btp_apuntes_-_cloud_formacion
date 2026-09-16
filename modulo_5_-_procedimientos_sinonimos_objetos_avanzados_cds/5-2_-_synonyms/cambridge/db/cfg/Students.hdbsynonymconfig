@@ -1,0 +1,8 @@
+{
+  "Students": {
+    "target": {
+      "schema.configure": "harvard-db/schema",
+      "object": "UNI_HARVARD_STUDENTS"
+    }
+  }
+}
