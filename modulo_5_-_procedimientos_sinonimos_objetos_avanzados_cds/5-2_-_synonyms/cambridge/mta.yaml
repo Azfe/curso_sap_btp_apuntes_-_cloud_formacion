@@ -32,9 +32,12 @@ modules:
     path: gen/db
     requires:
       - name: cambridge-db
+      - name: harvard-db
     parameters:
       instances: 1
       buildpack: nodejs_buildpack
+    properties:
+      TARGET_CONTAINER: cambridge-db
 
 resources:
   - name: cambridge-db
@@ -42,6 +45,10 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+    properties:
+      service-name: ${service-name}
+  - name: harvard-db
+    type: org.cloudfoundry.user-provided-service
   - name: cambridge-auth
     type: org.cloudfoundry.managed-service
     parameters:
