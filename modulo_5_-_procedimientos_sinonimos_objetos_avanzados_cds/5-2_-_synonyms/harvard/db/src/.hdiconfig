@@ -1,0 +1,10 @@
+{
+  "file_suffixes": {
+    "hdbrole": {
+      "plugin_name": "com.sap.hana.di.role"
+    },
+    "hdbsynonym": {
+      "plugin_name": "com.sap.hana.di.synonym"
+    }
+  }
+}
