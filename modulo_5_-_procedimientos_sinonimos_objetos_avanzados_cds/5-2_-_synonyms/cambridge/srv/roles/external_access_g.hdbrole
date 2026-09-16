@@ -1,0 +1,10 @@
+{
+    "role": {
+        "name": "external_access_g",
+        "object_privileges": [
+            { "name": "cambridge_Students", "type": "TABLE", "privileges": ["SELECT", "UPDATE"], "privileges_with_grant_option": ["SELECT", "UPDATE"] },
+            { "name": "cambridge_Subjects", "type": "TABLE", "privileges": ["SELECT", "UPDATE"], "privileges_with_grant_option": ["SELECT", "UPDATE"] },
+            { "name": "cambridge_Courses", "type": "TABLE", "privileges": ["SELECT", "UPDATE"], "privileges_with_grant_option": ["SELECT", "UPDATE"] }
+        ]
+    }
+}
