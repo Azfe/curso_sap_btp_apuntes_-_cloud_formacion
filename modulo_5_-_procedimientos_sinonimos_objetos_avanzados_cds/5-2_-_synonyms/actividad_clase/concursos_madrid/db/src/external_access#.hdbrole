@@ -1,0 +1,22 @@
+{
+    "role": {
+      "name": "external_access#",
+      "object_privileges": [
+        {
+          "name": "COM_MADRID_GESTIONCONCURSOS_CONCURSOS",
+          "type": "TABLE",
+          "privileges_with_grant_option": ["SELECT"]
+        },
+        {
+          "name": "COM_MADRID_GESTIONCONCURSOS_PROPIEDADES",
+          "type": "TABLE",
+          "privileges_with_grant_option": ["SELECT"]
+        },
+        {
+          "name": "COM_MADRID_GESTIONCONCURSOS_EMPRESAS",
+          "type": "TABLE",
+          "privileges_with_grant_option": ["SELECT"]
+        }
+      ]
+    }
+}
