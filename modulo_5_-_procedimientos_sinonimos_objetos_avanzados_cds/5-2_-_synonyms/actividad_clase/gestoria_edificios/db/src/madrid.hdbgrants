@@ -1,0 +1,10 @@
+{
+    "madrid-grantor": {
+      "object_owner": {
+        "container_roles": ["external_access#"]
+      },
+      "application_user": {
+        "container_roles": ["external_access"]
+      }
+    }
+}
