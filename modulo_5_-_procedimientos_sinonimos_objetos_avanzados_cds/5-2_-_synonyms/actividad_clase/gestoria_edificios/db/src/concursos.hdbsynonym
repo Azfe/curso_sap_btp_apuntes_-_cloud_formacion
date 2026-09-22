@@ -1,0 +1,7 @@
+{
+    "CONCURSOS_MADRID": {
+      "target": {
+        "object": "COM_MADRID_GESTIONCONCURSOS_CONCURSOS"
+      }
+    }
+}

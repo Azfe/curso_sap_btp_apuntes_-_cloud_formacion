@@ -1,0 +1,8 @@
+{
+    "CONCURSOS_MADRID": {
+      "target": {
+        "object": "COM_MADRID_GESTIONCONCURSOS_CONCURSOS",
+        "schema.configure": "madrid-grantor/schema"
+      }
+    }
+}
