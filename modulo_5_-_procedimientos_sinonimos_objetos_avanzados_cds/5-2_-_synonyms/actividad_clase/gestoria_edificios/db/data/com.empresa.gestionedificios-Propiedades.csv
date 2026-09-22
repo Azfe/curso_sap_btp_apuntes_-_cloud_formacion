@@ -1,0 +1,3 @@
+ID,referenciaCatastral,direccion,ciudad,codigoPostal,tipoInmueble,superficieM2,disponible
+c2e6a4f0-0002-4000-8000-000000000001,1234567AB1234C0001XY,Calle Alcalá 100,Madrid,28009,Piso,85.5,true
+c2e6a4f0-0002-4000-8000-000000000002,7654321CD5678E0002ZX,Paseo de Gracia 50,Barcelona,08007,Local,120.0,true

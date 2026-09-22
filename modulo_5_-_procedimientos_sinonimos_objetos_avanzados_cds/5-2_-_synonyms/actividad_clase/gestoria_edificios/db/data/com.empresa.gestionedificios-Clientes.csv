@@ -1,0 +1,3 @@
+ID,nombre,apellidos,nif,email,telefono,direccion
+b1e6a4f0-0001-4000-8000-000000000001,Ana,García López,12345678A,ana.garcia@example.com,600111222,"Calle Mayor 1, Madrid"
+b1e6a4f0-0001-4000-8000-000000000002,Inmobiliaria,del Sur SL,B87654321,contacto@invsur.com,910223344,"Av. Andalucía 20, Sevilla"
