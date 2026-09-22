@@ -1,0 +1,71 @@
+_schema-version: 3.3.0
+ID: gestoria_edificios
+version: 1.0.0
+description: "Gestión de edificios de una compañía (alquiler y venta)"
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: gestoria_edificios-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: gestoria_edificios-db
+      - name: gestoria_edificios-auth
+
+  - name: gestoria_edificios-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: gestoria_edificios-db
+        properties:
+            TARGET_CONTAINER: ~{hdi-container-service}
+      - name: madrid-grantor
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: madrid-grantor
+          service: ~{madrid-grantor-service}
+
+resources:
+  - name: gestoria_edificios-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-container-service: ${service-name}
+  - name: gestoria_edificios-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: gestoria_edificios-${org}-${space}
+        tenant-mode: dedicated
+        oauth2-configuration:
+          credential-types:
+            - "binding-secret"
+            - "x509"            
+  - name: madrid-grantor
+    type: org.cloudfoundry.existing-service
+    properties:
+      madrid-grantor-service: ${service-name}
+    parameters:
+      service-name: gestoria_concursos-db
