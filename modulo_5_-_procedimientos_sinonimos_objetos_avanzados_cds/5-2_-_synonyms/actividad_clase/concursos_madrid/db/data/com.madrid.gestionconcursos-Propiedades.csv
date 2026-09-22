@@ -1,0 +1,3 @@
+ID,referenciaCatastral,direccion,municipio,codigoPostal,tipoInmueble,superficieM2,valorCatastral
+a1f6a4f0-0001-4000-8000-000000000001,9876543EF9876G0001AB,"Calle Bravo Murillo 200",Madrid,28020,Oficina,300.00,850000.00
+a1f6a4f0-0001-4000-8000-000000000002,1112223HH1112I0002CD,"Plaza Mayor 3",Alcalá de Henares,28801,Local,90.00,210000.00

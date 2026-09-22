@@ -1,0 +1,3 @@
+ID,titulo,descripcion,tipoConcurso,propiedad_ID,empresaAdjudicataria_ID,fechaPublicacion,fechaLimitePresentacion,presupuestoBase,estado
+c3f6a4f0-0003-4000-8000-000000000001,Alquiler oficina Bravo Murillo,Concurso para el alquiler de oficinas,Alquiler,a1f6a4f0-0001-4000-8000-000000000001,b2f6a4f0-0002-4000-8000-000000000001,2026-02-01,2026-03-01,4500.00,Adjudicado
+c3f6a4f0-0003-4000-8000-000000000002,Venta local Plaza Mayor,Concurso para la venta del local,Venta,a1f6a4f0-0001-4000-8000-000000000002,,2026-04-01,2026-05-15,210000.00,Abierto
