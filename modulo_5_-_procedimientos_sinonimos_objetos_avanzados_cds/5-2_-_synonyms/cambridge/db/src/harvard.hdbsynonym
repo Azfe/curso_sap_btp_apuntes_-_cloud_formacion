@@ -1,0 +1,5 @@
+{
+    "HARVARD_STUDENTS": { "target": { "object": "UNI_HARVARD_STUDENTS" } },
+    "HARVARD_SUBJECTS": { "target": { "object": "UNI_HARVARD_SUBJECTS" } },
+    "HARVARD_COURSE":   { "target": { "object": "UNI_HARVARD_COURSE" } }
+}

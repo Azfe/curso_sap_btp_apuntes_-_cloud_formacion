@@ -1,0 +1,5 @@
+{
+    "HARVARD_STUDENTS": { "target": { "object": "UNI_HARVARD_STUDENTS", "schema.configure": "harvard-db/schema" } },
+    "HARVARD_SUBJECTS": { "target": { "object": "UNI_HARVARD_SUBJECTS", "schema.configure": "harvard-db/schema" } },
+    "HARVARD_COURSE":   { "target": { "object": "UNI_HARVARD_COURSE",   "schema.configure": "harvard-db/schema" } }
+}
