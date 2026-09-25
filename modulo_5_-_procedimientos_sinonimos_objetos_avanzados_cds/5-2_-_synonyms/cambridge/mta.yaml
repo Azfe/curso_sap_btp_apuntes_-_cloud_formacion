@@ -30,14 +30,18 @@ modules:
   - name: cambridge-db-deployer
     type: hdb
     path: gen/db
-    requires:
-      - name: cambridge-db
-      - name: harvard-db
     parameters:
-      instances: 1
-      buildpack: nodejs_buildpack
-    properties:
-      TARGET_CONTAINER: cambridge-db
+        instances: 1
+        buildpack: nodejs_buildpack
+    requires:
+      - name: cambridge-db    
+        properties:
+          TARGET_CONTAINER: ~{hdi-container-service}
+      - name: harvard-db
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: harvard-db
+          service: ~{harvard-db-service}
 
 resources:
   - name: cambridge-db
@@ -46,9 +50,14 @@ resources:
       service: hana
       service-plan: hdi-shared
     properties:
-      service-name: ${service-name}
+      hdi-container-service: ${service-name}
+      
   - name: harvard-db
-    type: org.cloudfoundry.user-provided-service
+    type: org.cloudfoundry.existing-service  
+    parameters:
+        service-name: harvard-db
+    properties:
+      harvard-db-service: ${service-name}
   - name: cambridge-auth
     type: org.cloudfoundry.managed-service
     parameters:
