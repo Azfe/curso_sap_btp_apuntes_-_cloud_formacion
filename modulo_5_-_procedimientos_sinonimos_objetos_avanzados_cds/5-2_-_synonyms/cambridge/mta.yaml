@@ -63,7 +63,7 @@ resources:
     parameters:
       config:
         tenant-mode: dedicated
-        xsappname: cambridge
+        xsappname: cambridge-${org}-${space}
       path: ./xs-security.json
       service: xsuaa
       service-name: cambridge-auth

@@ -47,7 +47,7 @@ resources:
     parameters:
       config:
         tenant-mode: dedicated
-        xsappname: harvard
+        xsappname: harvard-${org}-${space}
       path: ./xs-security.json
       service: xsuaa
       service-name: harvard-auth
