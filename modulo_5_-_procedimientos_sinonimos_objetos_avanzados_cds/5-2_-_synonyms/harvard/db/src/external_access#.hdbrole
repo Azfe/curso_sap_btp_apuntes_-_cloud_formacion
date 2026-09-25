@@ -1,0 +1,28 @@
+{
+    "role": {
+        "name": "external_access#",
+        "object_privileges": [
+            {
+                "name": "UNI_HARVARD_STUDENTS",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "UNI_HARVARD_SUBJECTS",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            },
+            {
+                "name": "UNI_HARVARD_COURSE",
+                "type": "TABLE",
+                "privileges_with_grant_option": [
+                    "SELECT"
+                ]
+            }
+        ]
+    }
+}
