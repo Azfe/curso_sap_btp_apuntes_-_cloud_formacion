@@ -22,3 +22,5 @@ mta-op-*/
 .vscode/
 
 cfg/*.mtaext
+
+*.env
