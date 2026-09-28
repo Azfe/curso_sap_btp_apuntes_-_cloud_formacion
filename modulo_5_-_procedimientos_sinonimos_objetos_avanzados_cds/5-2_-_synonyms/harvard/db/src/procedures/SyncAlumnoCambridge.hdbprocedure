@@ -1,0 +1,41 @@
+PROCEDURE "SyncAlumnoCambridge"(
+    IN iv_email NVARCHAR(100),
+    OUT ov_mensaje NVARCHAR(200),
+    OUT ov_returncode INTEGER
+)
+
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER AS
+BEGIN
+    DECLARE lv_nota_cambridge INTEGER;
+    DECLARE lv_count INTEGER;
+
+    -- 1. Buscar alumno en Cambridge vía synonyms
+    -- COUNT(*) siempre devuelve una fila: evita NO_DATA_FOUND (1299) y
+    -- el error por varias filas (1300) si el email está duplicado
+    SELECT COUNT(*), MAX(FINALGRADE)
+    INTO lv_count, lv_nota_cambridge
+    FROM "HARVARD_CAMBRIDGE_STUDENT"
+    WHERE email = :iv_email;
+
+    IF :lv_count = 0 THEN
+        ov_mensaje := 'Alumno no encontrado en Cambridge: ' || :iv_email;
+        ov_returncode := 1;
+        RETURN;
+    END IF;
+
+    -- 2. Actualizar FINALGRADE en Harvard con el valor de Cambridge
+    UPDATE "UNI_HARVARD_STUDENTS"
+    SET FINALGRADE = :lv_nota_cambridge
+    WHERE email = :iv_email;
+
+    -- ::ROWCOUNT sí es fiable tras un UPDATE
+    IF ::ROWCOUNT = 0 THEN
+        ov_mensaje := 'Alumno no encontrado en Harvard: ' || :iv_email;
+        ov_returncode := 2;
+        RETURN;
+    END IF;
+
+    ov_mensaje := 'Nota sincronizada correctamente: ' || TO_NVARCHAR(:lv_nota_cambridge);
+    ov_returncode := 0;
+END;
