@@ -1,0 +1,8 @@
+{
+    "role": {
+        "name": "external_access",
+        "object_privileges": [
+            { "name": "UNI_CAMBRIDGE_STUDENTS", "type": "TABLE", "privileges": ["SELECT"] }
+        ]
+    }
+}

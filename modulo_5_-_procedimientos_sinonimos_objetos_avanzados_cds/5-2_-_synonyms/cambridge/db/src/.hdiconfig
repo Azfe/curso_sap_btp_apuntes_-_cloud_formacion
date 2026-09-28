@@ -2,6 +2,7 @@
     "file_suffixes": {
       "hdbgrants":        { "plugin_name": "com.sap.hana.di.grants" },
       "hdbsynonym":       { "plugin_name": "com.sap.hana.di.synonym" },
-      "hdbsynonymconfig": { "plugin_name": "com.sap.hana.di.synonym.config" }
+      "hdbsynonymconfig": { "plugin_name": "com.sap.hana.di.synonym.config" },
+      "hdbrole": { "plugin_name": "com.sap.hana.di.role" }
     }
 }
