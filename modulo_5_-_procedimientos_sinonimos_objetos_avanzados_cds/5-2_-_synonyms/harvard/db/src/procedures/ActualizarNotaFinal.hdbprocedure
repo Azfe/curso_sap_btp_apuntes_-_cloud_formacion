@@ -1,0 +1,67 @@
+PROCEDURE "ActualizarNotaFinal" (
+    IN iv_student_id NVARCHAR(36),
+    OUT ov_final_grade INTEGER,
+    OUT ov_message NVARCHAR(200),
+    OUT ov_returncode INTEGER
+)
+
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER AS
+BEGIN 
+    DECLARE lv_average DECIMAL(5,2);
+    DECLARE lv_count INTEGER;
+    DECLARE lv_cambridge_grade INTEGER;
+
+    -- 1. Verificar que el alumno existe
+    SELECT COUNT(*)
+    INTO lv_count
+    FROM "UNI_HARVARD_STUDENTS"
+    WHERE ID = :iv_student_id;
+
+    IF :lv_count = 0 THEN 
+        ov_message := 'Alumno no encontrado' || :iv_student_id;
+        ov_returncode := 1;
+        ov_final_grade := 0;
+        RETURN;
+    END IF;
+    
+    -- 2. Calcular la media de Grade_Subject
+    SELECT AVG(TO_DECIMAL(grade))
+    INTO lv_average
+    FROM "UNI_HARVARD_GRADE_SUBJECT"
+    WHERE student_ID = :iv_student_id;
+
+    IF :lv_average is NULL THEN
+        ov_message := 'El alumno no tiene asignaturas registradas';
+        ov_returncode := 2;
+        ov_final_grade := 0;
+        RETURN;   
+    END IF;
+
+    ov_final_grade := TO_INTEGER(ROUND(:lv_average, 0));
+
+    -- 3. Actualizar final_grade en Harvard
+    UPDATE "UNI_HARVARD_STUDENTS"
+    SET FINALGRADE = :ov_final_grade
+    WHERE ID = :iv_student_id;
+
+    -- 4. Comparar con Cambridge (solo lectura vía synonym), cruzando por email
+    SELECT COUNT(*), MAX(c.FINALGRADE)
+      INTO lv_count, lv_cambridge_grade
+      FROM "HARVARD_CAMBRIDGE_STUDENT" AS c
+      INNER JOIN "UNI_HARVARD_STUDENTS" AS h ON c.EMAIL = h.EMAIL
+      WHERE h.ID = :iv_student_id;
+
+      IF :lv_count = 0 THEN
+          ov_message := 'Nota final actualizada: ' || TO_NVARCHAR(:ov_final_grade)
+                     || '. El alumno no existe en Cambridge';
+      ELSEIF :lv_cambridge_grade = :ov_final_grade THEN
+          ov_message := 'Nota final actualizada: ' || TO_NVARCHAR(:ov_final_grade)
+                     || '. Coincide con Cambridge';
+      ELSE
+          ov_message := 'Nota final actualizada: ' || TO_NVARCHAR(:ov_final_grade)
+                     || '. Difiere de Cambridge (' || TO_NVARCHAR(:lv_cambridge_grade) || ')';
+      END IF;
+
+      ov_returncode := 0;
+END;
