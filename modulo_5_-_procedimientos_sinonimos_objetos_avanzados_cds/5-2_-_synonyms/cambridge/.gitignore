@@ -6,7 +6,6 @@ gen/
 .cdsrc-private.json
 default-*.json
 *.sqlite
-cfg/*.mtaext
 
 # MTA
 mta_archives/
@@ -22,3 +21,5 @@ mta-op-*/
 @cds-models
 
 .vscode/
+
+cfg/*.mtaext
