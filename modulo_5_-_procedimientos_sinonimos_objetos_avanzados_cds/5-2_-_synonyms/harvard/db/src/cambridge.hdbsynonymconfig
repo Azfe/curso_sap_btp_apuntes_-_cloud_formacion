@@ -1,0 +1,5 @@
+{
+    "HARVARD_CAMBRIDGE_STUDENT": {
+        "target": { "object": "UNI_CAMBRIDGE_STUDENTS", "schema.configure": "cambridge-db/schema" }
+    }
+}
