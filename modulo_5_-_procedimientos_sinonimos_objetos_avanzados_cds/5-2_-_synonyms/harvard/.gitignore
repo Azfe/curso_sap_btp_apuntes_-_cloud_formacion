@@ -20,3 +20,5 @@ mta-op-*/
 @cds-models
 
 .vscode/
+
+cfg/*.mtaext
