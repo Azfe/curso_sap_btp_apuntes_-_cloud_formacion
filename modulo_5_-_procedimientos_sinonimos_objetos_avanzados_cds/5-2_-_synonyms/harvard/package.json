@@ -17,7 +17,12 @@
   "private": true,
   "cds": {
     "requires": {
-      "db": "sql",
+      "[production]": {
+        "db": "hana-cloud"
+      },
+      "[hybrid]": {
+        "db": "hana-cloud"
+      },      
       "auth": {
         "kind": "dummy"
       }
