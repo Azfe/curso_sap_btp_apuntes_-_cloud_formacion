@@ -1,2 +1,5 @@
-ID,name,start_date,signatures_ID,students_ID
-crs-001,CDS Fundamentals,2026-09-01,sig-001,stu-001
+ID,name,start_date,subjects_ID
+crs-001,CDS Fundamentals,2026-09-01,sig-001
+crs-002,Node.js Avanzado,2026-10-05,sig-002
+crs-003,SAP BTP Essentials,2026-11-02,sig-003
+crs-004,HANA Cloud y SQLScript,2027-01-11,sig-001
