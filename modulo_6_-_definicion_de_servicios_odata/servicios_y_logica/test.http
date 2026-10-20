@@ -1,0 +1,43 @@
+GET http://localhost:4004/odata/v4/harvard/Students
+Content-Type: application/json
+
+{
+    "name" : "Juan",
+    "surname" : "Ignacio",
+    "age" : 25
+}
+
+POST http://localhost:4004/odata/v4/harvard/Students
+Content-Type: application/json
+
+{
+    "name" : "Juan",
+    "surname" : "Ignacio",
+    "age" : 25
+}
+
+DELETE http://localhost:4004/odata/v4/harvard/Students
+Content-Type: application/json
+
+{
+    "ID" : "b2125d93-e3c6-4389-ba01-2fbed4a56703"
+}
+
+#############
+
+POST http://localhost:4004/odata/v4/harvard/enroll
+Content-Type: application/json
+
+{
+    "studentID" : "44444444-4444-4444-4444-000000000004",
+    "courseID" : "11111111-1111-1111-1111-000000000002"
+}
+
+############# 
+
+GET http://localhost:4004/odata/v4/harvard/studentsHasPassed(courseID=11111111-1111-1111-1111-000000000001)
+Content-Type: application/json
+
+{
+    "courseID": "11111111-1111-1111-1111-000000000001"
+}
