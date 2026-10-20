@@ -1,0 +1,31 @@
+{
+  "name": "harvard",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@sap/cds": "^10",
+    "@sap/xssec": "^4",
+    "@cap-js/hana": "^3"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3",
+    "@sap/cds-dk": "^10.1.1"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "[production]": {
+        "db": "hana-cloud"
+      },
+      "[hybrid]": {
+        "db": "hana-cloud"
+      },      
+      "auth": {
+        "kind": "dummy"
+      }
+    }
+  }
+}

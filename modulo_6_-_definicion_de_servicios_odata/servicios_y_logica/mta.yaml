@@ -1,0 +1,69 @@
+_schema-version: 3.3.0
+ID: Harvard
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx -p @sap/cds-dk cds build --profile production,node
+modules:
+  - name: harvard-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      memory: 256M
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: harvard-db
+      - name: harvard-auth
+  - name: harvard-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: harvard-db
+        properties:
+          TARGET_CONTAINER: ~{hdi-container-service}
+      - name: cambridge-db
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: cambridge-db
+          service: ~{cambridge-db-service}
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+
+resources:
+  - name: harvard-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-container-service: ${service-name}
+  - name: harvard-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        tenant-mode: dedicated
+        xsappname: harvard-${org}-${space}
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: harvard-auth
+      service-plan: application
+  - name: cambridge-db
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: cambridge-db
+    properties:
+      cambridge-db-service: ${service-name}
