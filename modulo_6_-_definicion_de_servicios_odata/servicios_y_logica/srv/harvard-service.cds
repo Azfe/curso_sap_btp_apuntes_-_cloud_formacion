@@ -3,6 +3,7 @@
 // El servicio debe llamarse HarvardService
 
 using uni.harvard as hv from '../db/schema';
+using API_BUSINESS_PARTNER as S4BP from './external/API_BUSINESS_PARTNER';
 
 // 6.1.4 Anotaciones de autorización
 // Protege el servicio: los alumnos solo pueden leer sus propios datos, los profesores pueden editarlos, y solo los administradores pueden crear o eliminar registros.
@@ -64,6 +65,7 @@ service HarvardService {
     // 💡 La diferencia clave: action puede modificar datos (POST en OData), function es de solo lectura (GET). 
     // Las acciones bound se vinculan a una entidad específica: action Students: suspender (motivo: String)   
 
+    entity A_AddressEmailAddress as projection on S4BP.A_AddressEmailAddress;
 }
 
 // 💡 CAP genera automáticamente enpoints OData v4 para cada entidad: GET /odata/v4/harvard/Students

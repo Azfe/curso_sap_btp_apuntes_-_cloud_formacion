@@ -161,6 +161,14 @@ export default class HarvardService extends cds.ApplicationService {
         // 💡 Para las API REST que se requiere autenticación OAuth(como las de S/4HANA), se configura el destination Serice de BTP: CAP leerá las
         // credenciales automáticamente si define -- "kind" : "odata", "credentials": {"destination": "S4HG_PROD"}
 
+        // 6.3.3 
+        // Extiende el proyecto para que al crear un alumno, consulte la API Business Partner(A2X) de S4/HANA para verificar si existe el 
+        // email como Business Partner. Usa el patrón façade de CAP.
+
+        const S4BP = await cds.connect.to('API_BUSINESS_PARTNER');
+
+        
+
         await super.init();
     }
 }
