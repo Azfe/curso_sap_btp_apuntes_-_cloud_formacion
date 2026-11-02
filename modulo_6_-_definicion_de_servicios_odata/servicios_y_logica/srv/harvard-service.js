@@ -114,6 +114,26 @@ export default class HarvardService extends cds.ApplicationService {
             return { success: true, message: `${student.name} matriculado en ${course.name}` };
         })
 
+        // 6.3.1 Consumo de servicios OData externos - Define una relación con el servicio externo enlazando el alumno con el Cliente (Customers)
+
+        this.after('READ', 'Students', async (students) => {
+            const list = Array.isArray(students) ? students : [students];
+            try {
+                const Northwind = await cds.connect.to("Northwind");
+                for (const a of list) {
+                    if (a.customer_CustomerID) {
+                        const data = await Northwind.run(SELECT.from("Customers").where({ CustomerID: a.customer_CustomerID }));
+                        if (data) a.customer = data[0];
+                    }
+                }
+            } catch (error) {
+                // El dato del cliente es opcional: sin Northwind, los alumnos se devuelven igual
+                console.error('Northwind:', error.message);
+            }
+            // 💡 CAP abstrae el protocolo: puedes usar la misma sintaxis CQL (SELECT.from(...)) para servicios locales y externos. 
+            // CAP traduce automáticamente la query a OData $filter, $select, etc. al ejecutarla contra el servicio externo.
+        })
+
         await super.init();
     }
 }

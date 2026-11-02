@@ -32,6 +32,8 @@ entity Grades : cuid, managed {
     student : Association to one Students;
 }
 
+using { Northwind as NW } from '../srv/external/Northwind';
+
 entity Students : cuid {
     name       : String(50);
     surname    : String(50);
@@ -42,4 +44,5 @@ entity Students : cuid {
     finalGrade : Integer @readonly; // calculado, no introducido a mano
     courses    : Association to many Enrollments
                      on courses.student = $self;
+    customer    : Association to NW.Customers // referencia en remoto
 }

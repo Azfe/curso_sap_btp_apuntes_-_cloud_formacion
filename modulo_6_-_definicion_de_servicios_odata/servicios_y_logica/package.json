@@ -5,7 +5,10 @@
   "dependencies": {
     "@sap/cds": "^10",
     "@sap/xssec": "^4",
-    "@cap-js/hana": "^3"
+    "@cap-js/hana": "^3",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^3",
@@ -44,6 +47,13 @@
               "Admin"
             ]
           }
+        }
+      },
+      "Northwind": {
+        "kind": "odata",
+        "model": "srv/external/Northwind",
+        "credentials": {
+          "url": "https://services.odata.org/v4/Northwind/Northwind.svc"
         }
       }
     }
