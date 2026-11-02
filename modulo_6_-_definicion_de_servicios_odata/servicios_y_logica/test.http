@@ -17,9 +17,10 @@ Authorization: {{admin}}
 Content-Type: application/json
 
 {
-    "name" : "",
-    "surname" : "",
-    "age" : null
+    "name" : "Bárbara",
+    "surname" : "Mendez",
+    "email" : "barbara.menger@email.com",
+    "age" : 27
 }
 
 #######
