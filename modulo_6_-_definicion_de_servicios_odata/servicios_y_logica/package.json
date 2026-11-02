@@ -22,9 +22,29 @@
       },
       "[hybrid]": {
         "db": "hana-cloud"
-      },      
+      },
       "auth": {
-        "kind": "dummy"
+        "kind": "mocked",
+        "users": {
+          "ana.garcia@students.example.edu": {
+            "password": "p",
+            "roles": [
+              "Alumno"
+            ]
+          },
+          "profe": {
+            "password": "p",
+            "roles": [
+              "Profesor"
+            ]
+          },
+          "admin": {
+            "password": "p",
+            "roles": [
+              "Admin"
+            ]
+          }
+        }
       }
     }
   }
