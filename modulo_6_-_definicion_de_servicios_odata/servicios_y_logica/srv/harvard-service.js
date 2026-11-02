@@ -167,7 +167,23 @@ export default class HarvardService extends cds.ApplicationService {
 
         const S4BP = await cds.connect.to('API_BUSINESS_PARTNER');
 
-        
+        // Exponer datos de S4/HANA en nuestro servicio (façade)
+        this.on('READ', 'A_AddressEmailAddress', (req) => S4BP.run(req.query))
+
+        // Verificar BP email al crear alumno
+        this.before('CREATE', 'Students', async(req) => {
+            const {email} = req.data;
+            
+            const [bp] = await S4BP.run(
+                SELECT.from('A_AddressEmailAddress').where({EmailAddress : email}).columns('AddressID').limit(1)
+            );
+
+            // Enriquecer los datos con la info de S/4
+            if(bp) {
+                req.data.AddressID = bp.AddressID;
+            }
+        })
+
 
         await super.init();
     }
