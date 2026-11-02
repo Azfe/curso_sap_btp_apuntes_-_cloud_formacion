@@ -1,0 +1,126 @@
+@host = http://localhost:4004/odata/v4/harvard
+@admin = Basic admin:p
+@profe = Basic profe:p
+@alumno = Basic ana.garcia@students.example.edu:p
+
+### ─── 6.2.1 after READ ──────────────────────────────
+### 1. Listar alumnos → 200, cada uno con "estado" (Aprobado / Suspenso / Pendiente)
+GET {{host}}/Students
+Authorization: {{admin}}
+
+### ─── 6.2.1 before CREATE ───────────────────────────
+### 2. Datos inválidos → 400 con 3 errores en "details" (targets: name, email, age)
+POST {{host}}/Students
+Authorization: {{admin}}
+Content-Type: application/json
+
+{
+    "name" : " ",
+    "email" : "sin-arroba",
+    "age" : 16
+}
+
+### 3. Alumno válido → 201 (guarda el ID para la petición 4)
+# @name createStudent
+POST {{host}}/Students
+Authorization: {{admin}}
+Content-Type: application/json
+
+{
+    "name" : "Juan",
+    "surname" : "Ignacio",
+    "email" : "juanignacio4@yopmail.com",
+    "age" : 20
+}
+
+### 4. Borrar el alumno creado en la 3 → 204
+DELETE {{host}}/Students({{createStudent.response.body.ID}})
+Authorization: {{admin}}
+
+### ─── 6.2.2 studentsHasPassed ───────────────────────
+### 5. Aprobados de Economics → 200 con Luis y Emma
+GET {{host}}/studentsHasPassed(courseID=11111111-1111-1111-1111-000000000002)
+Authorization: {{admin}}
+
+### 6. Curso inexistente → 404 "Curso no encontrado"
+GET {{host}}/studentsHasPassed(courseID=11111111-1111-1111-1111-000000000099)
+Authorization: {{admin}}
+
+### ─── 6.2.3-4 enroll ────────────────────────────────
+### 7. Matricular a Emma en Computer Science → 200 success: true
+POST {{host}}/enroll
+Authorization: {{admin}}
+Content-Type: application/json
+
+{
+    "studentID" : "44444444-4444-4444-4444-000000000003",
+    "courseID" : "11111111-1111-1111-1111-000000000001"
+}
+
+### 8. Repetir la 7 → 409 "El alumno ya está matriculado en este curso"
+POST {{host}}/enroll
+Authorization: {{admin}}
+Content-Type: application/json
+
+{
+    "studentID" : "44444444-4444-4444-4444-000000000003",
+    "courseID" : "11111111-1111-1111-1111-000000000001"
+}
+
+### 9. Alumno inexistente → 404 "Alumno no encontrado"
+POST {{host}}/enroll
+Authorization: {{admin}}
+Content-Type: application/json
+
+{
+    "studentID" : "44444444-4444-4444-4444-000000000099",
+    "courseID" : "11111111-1111-1111-1111-000000000001"
+}
+
+### ─── Rollback (UNIQUE en Grades) ───────────────────
+### 10. Preparar: Ana ya tiene nota en Microeconomics → 201
+POST {{host}}/Grades
+Authorization: {{admin}}
+Content-Type: application/json
+
+{
+    "grade" : 6,
+    "student_ID" : "44444444-4444-4444-4444-000000000001",
+    "subject_ID" : "22222222-2222-2222-2222-000000000003"
+}
+
+### 11. Matricular a Ana en Economics → 409 "El alumno ya tiene nota en alguna asignatura de este curso"
+POST {{host}}/enroll
+Authorization: {{admin}}
+Content-Type: application/json
+
+{
+    "studentID" : "44444444-4444-4444-4444-000000000001",
+    "courseID" : "11111111-1111-1111-1111-000000000002"
+}
+
+### 12. Comprobar el rollback → 200 con UNA sola matrícula (Computer Science), no Economics
+GET {{host}}/Enrollments?$filter=student_ID eq 44444444-4444-4444-4444-000000000001
+Authorization: {{admin}}
+
+### 13. El alumno solo ve su registro → 200 con 1 fila (Ana)
+GET {{host}}/Students
+Authorization: {{alumno}}
+
+### 14. El alumno no puede crear alumnos → 403
+POST {{host}}/Students
+Authorization: {{alumno}}
+Content-Type: application/json
+
+{
+    "name" : "Prueba",
+    "email" : "prueba@example.edu",
+    "age" : 20
+}
+
+### 15. El profesor consulta los aprobados → 200
+GET {{host}}/studentsHasPassed(courseID=11111111-1111-1111-1111-000000000002)
+Authorization: {{profe}}
+
+### 16. Sin usuario → 401
+GET {{host}}/Students

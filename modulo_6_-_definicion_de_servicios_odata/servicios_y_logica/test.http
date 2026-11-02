@@ -1,22 +1,31 @@
+@admin = Basic admin:p
+
 GET http://localhost:4004/odata/v4/harvard/Students
+Authorization: {{admin}}
 Content-Type: application/json
 
 {
-    "name" : "Juan",
-    "surname" : "Ignacio",
-    "age" : 25
+    "name" : "",
+    "email" : "",
+    "age" : null
 }
+
+#######
 
 POST http://localhost:4004/odata/v4/harvard/Students
+Authorization: {{admin}}
 Content-Type: application/json
 
 {
-    "name" : "Juan",
-    "surname" : "Ignacio",
-    "age" : 25
+    "name" : "",
+    "surname" : "",
+    "age" : null
 }
 
+#######
+
 DELETE http://localhost:4004/odata/v4/harvard/Students
+Authorization: {{admin}}
 Content-Type: application/json
 
 {
@@ -26,6 +35,7 @@ Content-Type: application/json
 #############
 
 POST http://localhost:4004/odata/v4/harvard/enroll
+Authorization: {{admin}}
 Content-Type: application/json
 
 {
@@ -36,6 +46,7 @@ Content-Type: application/json
 ############# 
 
 GET http://localhost:4004/odata/v4/harvard/studentsHasPassed(courseID=11111111-1111-1111-1111-000000000001)
+Authorization: {{admin}}
 Content-Type: application/json
 
 {
