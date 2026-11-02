@@ -25,8 +25,9 @@ entity Subjects : cuid, managed {
     course : Association to Courses;
 }
 
+ @assert.unique: { studentSubject: [student, subject] }
 entity Grades : cuid, managed {
-    grade   : Integer; // una nota por asignatura
+    grade   : Integer @assert.range: [0, 10]; // una nota por asignatura
     subject : Association to one Subjects;
     student : Association to one Students;
 }
