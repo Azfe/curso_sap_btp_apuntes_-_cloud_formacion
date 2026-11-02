@@ -55,6 +55,12 @@
         "credentials": {
           "url": "https://services.odata.org/v4/Northwind/Northwind.svc"
         }
+      },
+      "EmailVerifier": {
+        "kind": "rest",
+        "credentials": {
+          "url": "https://api.emailverifier.io/api/v1"
+        }
       }
     }
   }

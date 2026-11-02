@@ -134,6 +134,33 @@ export default class HarvardService extends cds.ApplicationService {
             // CAP traduce automáticamente la query a OData $filter, $select, etc. al ejecutarla contra el servicio externo.
         })
 
+        // 6.3.2 Integración de API REST 
+        // Integra una API REST de terceros (p. eje. servicio de verificación de emails) que no es OData. Llamar este desde un handler
+        // before CREATE en Students para validar el email.
+
+        // this.before('CREATE', 'Students', async (req) => {
+        //     const {email} = req.data;
+        //     if (!email?.includes('@')) return req.reject(400, 'Email no válido', 'email');
+
+        //     let result;
+            
+        //     try {
+        //         const EmailVerifier = await cds.connect.to('EmailVerifier');
+        //         // CAP maneja la autenticación y headers configurados                
+        //         result = await EmailVerifier.post('/verify', { email });
+
+        //     } catch (error) {
+        //         console.error('EmailVerifier:', error.message);
+        //         return req.reject(503, 'Servicio de verificación de email no operativo');
+        //     }
+        //     if (result?.status !== 'valid') {
+        //        return req.reject(400, `Email ${email} no es válido o inexistente`, 'email');
+        //     }
+        // })
+
+        // 💡 Para las API REST que se requiere autenticación OAuth(como las de S/4HANA), se configura el destination Serice de BTP: CAP leerá las
+        // credenciales automáticamente si define -- "kind" : "odata", "credentials": {"destination": "S4HG_PROD"}
+
         await super.init();
     }
 }
