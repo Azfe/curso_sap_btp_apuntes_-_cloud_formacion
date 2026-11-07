@@ -1,0 +1,24 @@
+# Dependencias
+node_modules/
+
+# Salida de `ui5 build`
+dist/
+
+# Caché local de UI5 CLI / UI5 Tooling
+.ui5/
+
+# Ficheros generados por TypeScript
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Variables de entorno y credenciales
+.env
+.env.*
+default-env.json
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
