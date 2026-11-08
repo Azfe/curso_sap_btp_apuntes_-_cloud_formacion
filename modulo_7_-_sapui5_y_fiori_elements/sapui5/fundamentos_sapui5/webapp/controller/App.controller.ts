@@ -14,8 +14,9 @@ export default class App extends Controller {
                 name: "Mundo"
             }
         }
+        // Definir el modelo con los datos
         const dataModel = new JSONModel(data)
-
+        // Vincular el modelo a la vista
         this.getView()?.setModel(dataModel)
     }
     onShowHello(): void {
