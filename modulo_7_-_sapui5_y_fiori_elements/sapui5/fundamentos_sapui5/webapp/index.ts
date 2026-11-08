@@ -1,1 +1,7 @@
-alert("UI5 is ready");
+import XMLView from "sap/ui/core/mvc/XMLView";
+
+XMLView.create({
+    viewName: "ui5.tutorial.walkthrough.view.App", id: "app"
+}).then((view) => {
+    view.placeAt("content");
+});
