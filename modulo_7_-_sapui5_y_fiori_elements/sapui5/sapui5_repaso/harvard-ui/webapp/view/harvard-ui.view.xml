@@ -1,0 +1,47 @@
+<mvc:View
+    controllerName="com.azup.harvardui.harvardui.controller.harvard-ui"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <List
+                id="studentsList"
+                items="{ path: '/Students', parameters: { $count: true } }"
+                mode="SingleSelectMaster"
+            >
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Students ({= ${/Students/$count}})" />
+                        <SearchField
+                            width="200px"
+                            search="onSearch"
+                        />
+                    </Toolbar>
+                </headerToolbar>
+
+                <items>
+                    <ObjectListItem
+                        title="{name} {surname}"
+                        number="{finalGrade}"
+                        numberUnit="nota"
+                        type="Navigation"
+                        press="onNavToDetalle"
+                    >
+                        <attributes>
+                            <ObjectAttribute text="{email}"/>                            
+                        </attributes>
+                            <firstStatus>
+                                <ObjectStatus
+                                    text="{= ${finalGrade} >= 50 ? 'Aprobado' : 'Suspenso'}"
+                                    state="{= ${finalGrade} >= 50 ? 'Success' : 'Error'}"/>                                
+                            </firstStatus>
+                    </ObjectListItem>
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>
