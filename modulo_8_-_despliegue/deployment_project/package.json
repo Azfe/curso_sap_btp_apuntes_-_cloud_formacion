@@ -1,0 +1,43 @@
+{
+  "name": "deployment_project",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@cap-js/hana": "^3",
+    "@sap/cds": "^10"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3",
+    "@sap/cds-dk": "^10"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sql",
+        "data": [
+          "db/data"
+        ]
+      },
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "admin": {
+            "password": "password123",
+            "id": "admin",
+            "attr": {
+              "email": "admin@sap.com"
+            },
+            "roles": [
+              "admin"
+            ]
+          },
+          "*": false
+        }
+      }
+    }
+  }
+}
