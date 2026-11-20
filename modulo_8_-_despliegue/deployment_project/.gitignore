@@ -20,3 +20,5 @@ mta_archives/
 @cds-models
 
 .vscode/
+
+.env
