@@ -4,4 +4,5 @@ service AdminService {
   entity Authors as projection on my.Authors;
   entity Books   as projection on my.Books;
   entity Genres  as projection on my.Genres;
+  function getUrl(book: String) returns String;
 }

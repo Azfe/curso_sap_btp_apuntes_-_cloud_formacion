@@ -1,0 +1,13 @@
+@user = admin
+@password = password123
+
+GET http://localhost:4004/odata/v4/admin/getUrl()
+Authorization: Basic {{user}}:{{password}}
+
+### Rama de la línea 20 → devuelve url
+GET http://localhost:4004/odata/v4/admin/getUrl(book='El valle de los lobos')
+Authorization: Basic {{user}}:{{password}}
+
+### Rama de la línea 21 → devuelve url2
+GET http://localhost:4004/odata/v4/admin/getUrl(book='Jane Eyre')
+Authorization: Basic {{user}}:{{password}}
