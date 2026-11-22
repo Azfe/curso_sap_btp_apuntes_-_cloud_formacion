@@ -11,7 +11,8 @@
     "@sap/cds-dk": "^10"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-hybrid": "cds watch --profile hybrid"
   },
   "private": true,
   "cds": {
@@ -38,6 +39,9 @@
           "*": false
         }
       }
+    },
+    "[hybrid]": {
+      "auth": "mocked"
     }
   }
 }
