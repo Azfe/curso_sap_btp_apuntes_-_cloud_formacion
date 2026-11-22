@@ -38,10 +38,10 @@
           },
           "*": false
         }
+      },
+      "[hybrid]": {
+        "auth": "mocked"
       }
-    },
-    "[hybrid]": {
-      "auth": "mocked"
     }
   }
 }
