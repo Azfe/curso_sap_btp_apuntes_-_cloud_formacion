@@ -22,3 +22,5 @@ mta_archives/
 .vscode/
 
 .env
+
+xs-security.hybrid.json
