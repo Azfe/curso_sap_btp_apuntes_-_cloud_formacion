@@ -1,0 +1,17 @@
+@server = http://localhost:4004
+@catalog = {{server}}/odata/v4/catalog
+@admin = {{server}}/odata/v4/catalog
+
+### Libros
+GET {{catalog}}/Books
+Authorization: Basic alice:
+
+### Pedido
+POST {{catalog}}/submitOrder
+Authorization: Basic alice:
+Content-Type: application/json
+
+{
+    "book": 201,
+    "quantity": 5 
+}
